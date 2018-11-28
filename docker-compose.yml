@@ -1,0 +1,11 @@
+version: '3'
+
+services: 
+    php: 
+        build: ./php
+        ports:
+            - "80:80"
+    mysql:
+        image: mysql
+        ports:
+            - "3306:3306"
