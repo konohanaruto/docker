@@ -3,9 +3,8 @@ version: '3'
 services: 
     php: 
         build: ./php
+        container_name: php
         ports:
             - "80:80"
-    mysql:
-        image: mysql
-        ports:
-            - "3306:3306"
+        volumes: 
+            - /www/docker/php:/www/docker/php
