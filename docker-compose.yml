@@ -2,10 +2,12 @@ version: '3'
 
 services: 
     php: 
-        build: ./php
+        build:
+            context: ./php
+        links:
+            - "mysql"
         ports:
-            - "80:80"
-    mysql:
-        image: mysql
-        ports:
-            - "3306:3306"
+            - "8001:80"
+    mysql: 
+        build:
+            context: ./
