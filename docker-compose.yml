@@ -2,18 +2,18 @@ version: '3'
 
 services: 
     php: 
-        build: ./php
+        build: ./build/php
         container_name: php
         link: 
             - "mysql"
         ports:
             - "80:80"
         volumes: 
-            - /www/docker/php:/www/docker/php
+            - ./etc/php.ini:/etc/php.ini
     mysql:
-        build: ./mysql
+        build: ./build/mysql
         container_name: mysql
         ports:
             - "3306:3306"
         volumes:
-            - /www/docker/mysql:/www/docker/mysql
+            - ./data/db/mysql:/var/lib/mysql
