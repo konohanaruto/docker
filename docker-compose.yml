@@ -13,6 +13,12 @@ services:
     mysql:
         build: ./build/mysql
         container_name: mysql
+        restart: always
+        environment:
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         ports:
             - "3306:3306"
         volumes:
