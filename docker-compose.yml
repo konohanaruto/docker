@@ -1,25 +1,35 @@
 version: '3'
 
 services: 
+    nginx:
+        build: ./build/nginx
+        container_name: nginx
+        tty: true
+        links: 
+            - php
+        ports: 
+            - "80:80"
+        volumes:
+            - "./etc/nginx/conf.d:/etc/nginx/conf.d:ro"
+            - "/www/nginx/html:/usr/share/nginx/html:ro"
+            - "/www:/www"
     php: 
         build: ./build/php
         container_name: php
-        link: 
+        links: 
             - "mysql"
-        ports:
-            - "80:80"
         volumes: 
-            - ./etc/php.ini:/etc/php.ini
+            - "./etc/php.ini:/etc/php.ini"
+            - "/www:/www:ro"
     mysql:
         build: ./build/mysql
         container_name: mysql
-        restart: always
-        environment:
-            - MYSQL_DATABASE=${MYSQL_DATABASE}
-            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-            - MYSQL_USER=${MYSQL_USER}
-            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        tty: true
+        env_file:
+            - mysql.env
         ports:
             - "3306:3306"
         volumes:
-            - ./data/db/mysql:/var/lib/mysql
+            - "./data/mysql:/var/lib/mysql"
+            - "./etc/mysql/my.cnf:/etc/mysql/my.cnf"
+            - "./etc/mysql/conf.d:/etc/mysql/conf.d"
