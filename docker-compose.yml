@@ -10,6 +10,8 @@ services:
         ports: 
             - "80:80"
         volumes:
+            - "/etc/passwd:/etc/passwd"
+            - "/etc/group:/etc/group"
             - "./etc/nginx/conf.d:/etc/nginx/conf.d:ro"
             - "/www/nginx/html:/usr/share/nginx/html:ro"
             - "/www:/www"
@@ -19,6 +21,8 @@ services:
         links: 
             - "mysql"
         volumes: 
+            - "/etc/passwd:/etc/passwd"
+            - "/etc/group:/etc/group"
             - "./etc/php.ini:/etc/php.ini"
             - "/www:/www:ro"
     mysql:
@@ -30,6 +34,8 @@ services:
         ports:
             - "3306:3306"
         volumes:
+            - "/etc/passwd:/etc/passwd"
+            - "/etc/group:/etc/group"
             - "./data/mysql:/var/lib/mysql"
             - "./etc/mysql/my.cnf:/etc/mysql/my.cnf"
             - "./etc/mysql/conf.d:/etc/mysql/conf.d"
