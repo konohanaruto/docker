@@ -10,6 +10,7 @@ services:
         ports: 
             - "80:80"
         volumes:
+            # 如果有报错提示，请删除下面两行
             - "/etc/passwd:/etc/passwd"
             - "/etc/group:/etc/group"
             - "./etc/nginx/conf.d:/etc/nginx/conf.d:ro"
@@ -21,6 +22,7 @@ services:
         links: 
             - "mysql"
         volumes: 
+            # 如果有报错提示，请删除下面两行
             - "/etc/passwd:/etc/passwd"
             - "/etc/group:/etc/group"
             - "./etc/php.ini:/etc/php.ini"
