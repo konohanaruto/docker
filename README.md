@@ -48,10 +48,10 @@
 * `build` 目录为context上下文目录，用于`docker-compose.yml`文件中用到`build`指令的存放`Dockerfile`目录
 * `build/nginx/Dockerfile`、`build/mysql/Dockerfile`以及`build/php/Dockerfile`仅仅简单的参照了官方镜像，没有做额外配置
 * `data` 目录为mysql数据目录
-* `docker-compose.yml` 参考：[docker composer documentation](https://docs.docker.com/compose/compose-file)
+* `docker-compose.yml` 参考：[docker compose documentation](https://docs.docker.com/compose/compose-file)
 * `etc` 为统一存放配置文件的目录
 * `etc/nginx/conf.d/vhosts.conf` 配置了相关演示地址，并且能访问成功
-* `mysql.env` 用于存放mysql官方镜像要求的必须存在的环境变量[docker/mysql from hub.docker.com](https://hub.docker.com/_/mysql)
+* `mysql.env` 用于存放mysql官方镜像要求的必须存在的环境变量[mysql library from hub.docker.com](https://hub.docker.com/_/mysql)
 
 ## mysql环境变量的官方说明
 
