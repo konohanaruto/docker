@@ -78,7 +78,6 @@
 >
 > **MYSQL_ONETIME_PASSWORD**<br>
 > Sets root (not the user specified in MYSQL_USER!) user as expired once init is complete, forcing a password change on first login. NOTE: This feature is supported on MySQL 5.6+ only. Using this option on MySQL 5.5 will throw an appropriate error during initialization.
-```
 
 ## 快速开始
 
