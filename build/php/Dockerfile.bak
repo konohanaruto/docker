@@ -1,19 +1,5 @@
 FROM php:7.2-fpm
 
-ARG USER_ID
-ARG GROUP_ID
-
-RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
-    userdel -f www-data &&\
-    if getent group www-data ; then groupdel www-data; fi &&\
-    groupadd -g ${GROUP_ID} www-data &&\
-    useradd -l -u ${USER_ID} -g www-data www-data &&\
-    install -d -m 0755 -o www-data -g www-data /home/www-data &&\
-    chown --changes --silent --no-dereference --recursive \
-          --from=33:33 ${USER_ID}:${GROUP_ID} \
-        /home/www-data \
-;fi
-
 # 官方Dockerfile地址
 # https://github.com/docker-library/php/blob/c88c3d52f41a370f3a62e3ded62b7b223b4cb846/7.2/stretch/fpm/Dockerfile
 # 安装基本依赖
@@ -36,9 +22,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # 安装Imagick扩展，因为上面我们已经安装了libmagickwand-dev系统库，所以这里可以直接安装扩展
 RUN pecl install imagick && docker-php-ext-enable imagick
-
-# 安装swoole扩展
-RUN pecl install swoole && docker-php-ext-enable swoole
 
 # mcrypt扩展没有在php7.2中被提供，这里单独用pecl安装，此外上方必须要先安装系统库libmcrypt-dev，坑。
 # 参考：https://github.com/docker-library/php/issues/623
@@ -90,5 +73,3 @@ RUN curl -L -o /tmp/memcached.tar.gz "https://github.com/php-memcached-dev/php-m
 
 # 删除下载的文件包，清理空间
 RUN rm -rf /var/lib/apt/lists/*
-
-USER www-data
