@@ -34,12 +34,13 @@ services:
             context: ./build/mysql
             args:
                 HOST_USER_ID: 997
-                HOST_GROUP_ID: 993
-                MYSQL_ROOT_PASSWORD: 123456
-                MYSQL_DATABASE: test
-                MYSQL_USER: mattkay
-                MYSQL_PASSWORD: 123456
+                HOST_GROUP_ID: 993 
         container_name: mysql
+        environment: 
+            MYSQL_ROOT_PASSWORD: 123456
+            MYSQL_DATABASE: test
+            MYSQL_USER: mattkay
+            MYSQL_PASSWORD: 123456
         tty: true
         ports:
             - "3306:3306"
